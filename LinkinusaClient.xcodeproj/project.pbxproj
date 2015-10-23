@@ -1,0 +1,576 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE174EA91BBB8A8100EE759F /* VerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE174EA81BBB8A8100EE759F /* VerifyVC.swift */; settings = {ASSET_TAGS = (); }; };
+		BE2068001BB7424D0060087A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2067FF1BB7424D0060087A /* AppDelegate.swift */; };
+		BE2068021BB7424D0060087A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2068011BB7424D0060087A /* ViewController.swift */; };
+		BE2068051BB7424D0060087A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2068031BB7424D0060087A /* Main.storyboard */; };
+		BE2068071BB7424D0060087A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE2068061BB7424D0060087A /* Assets.xcassets */; };
+		BE20680A1BB7424D0060087A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2068081BB7424D0060087A /* LaunchScreen.storyboard */; };
+		BE2068151BB7424D0060087A /* LinkinusaClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2068141BB7424D0060087A /* LinkinusaClientTests.swift */; };
+		BE2068201BB7424D0060087A /* LinkinusaClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE20681F1BB7424D0060087A /* LinkinusaClientUITests.swift */; };
+		BE285C551BD9739100A6B678 /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE285C541BD9739100A6B678 /* OrderVC.swift */; settings = {ASSET_TAGS = (); }; };
+		BE285C571BD9918900A6B678 /* OrderAllTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE285C561BD9918900A6B678 /* OrderAllTableCell.swift */; settings = {ASSET_TAGS = (); }; };
+		BE285C591BD9924200A6B678 /* OrderAllData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE285C581BD9924200A6B678 /* OrderAllData.swift */; settings = {ASSET_TAGS = (); }; };
+		BE64B6321BBBA04600AF99E4 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE64B6311BBBA04600AF99E4 /* UIDevice.swift */; settings = {ASSET_TAGS = (); }; };
+		BE7FB4111BD7610800CC14A9 /* RateTabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7FB4101BD7610800CC14A9 /* RateTabelCell.swift */; settings = {ASSET_TAGS = (); }; };
+		BE8AB9A21BD7048C00FF06C4 /* RatingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8AB9A11BD7048C00FF06C4 /* RatingVC.swift */; settings = {ASSET_TAGS = (); }; };
+		BE9D53CA1BD7187E0090FCDB /* RatingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9D53C91BD7187E0090FCDB /* RatingData.swift */; settings = {ASSET_TAGS = (); }; };
+		BE9FB0AB1BD9FAEC00372026 /* OrderDetailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9FB0AA1BD9FAEC00372026 /* OrderDetailTableCell.swift */; settings = {ASSET_TAGS = (); }; };
+		BE9FB0AD1BD9FB9B00372026 /* OrderDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9FB0AC1BD9FB9B00372026 /* OrderDetailData.swift */; settings = {ASSET_TAGS = (); }; };
+		BEFDC5331BBB6E1F000262A6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFDC5321BBB6E1F000262A6 /* LoginVC.swift */; settings = {ASSET_TAGS = (); }; };
+		BEFDC5351BBB7D4B000262A6 /* CustomizedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFDC5341BBB7D4B000262A6 /* CustomizedTabBarController.swift */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BE2068111BB7424D0060087A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE2067F41BB7424D0060087A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE2067FB1BB7424D0060087A;
+			remoteInfo = LinkinusaClient;
+		};
+		BE20681C1BB7424D0060087A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE2067F41BB7424D0060087A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE2067FB1BB7424D0060087A;
+			remoteInfo = LinkinusaClient;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BE174EA81BBB8A8100EE759F /* VerifyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyVC.swift; sourceTree = "<group>"; };
+		BE2067FC1BB7424D0060087A /* LinkinusaClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkinusaClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE2067FF1BB7424D0060087A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BE2068011BB7424D0060087A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BE2068041BB7424D0060087A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BE2068061BB7424D0060087A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE2068091BB7424D0060087A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BE20680B1BB7424D0060087A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE2068101BB7424D0060087A /* LinkinusaClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkinusaClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE2068141BB7424D0060087A /* LinkinusaClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkinusaClientTests.swift; sourceTree = "<group>"; };
+		BE2068161BB7424D0060087A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE20681B1BB7424D0060087A /* LinkinusaClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkinusaClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE20681F1BB7424D0060087A /* LinkinusaClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkinusaClientUITests.swift; sourceTree = "<group>"; };
+		BE2068211BB7424D0060087A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE285C541BD9739100A6B678 /* OrderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
+		BE285C561BD9918900A6B678 /* OrderAllTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderAllTableCell.swift; sourceTree = "<group>"; };
+		BE285C581BD9924200A6B678 /* OrderAllData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderAllData.swift; sourceTree = "<group>"; };
+		BE64B6311BBBA04600AF99E4 /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		BE7FB4101BD7610800CC14A9 /* RateTabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateTabelCell.swift; sourceTree = "<group>"; };
+		BE8AB9A11BD7048C00FF06C4 /* RatingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingVC.swift; sourceTree = "<group>"; };
+		BE9D53C91BD7187E0090FCDB /* RatingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingData.swift; sourceTree = "<group>"; };
+		BE9FB0AA1BD9FAEC00372026 /* OrderDetailTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailTableCell.swift; sourceTree = "<group>"; };
+		BE9FB0AC1BD9FB9B00372026 /* OrderDetailData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailData.swift; sourceTree = "<group>"; };
+		BEFDC5321BBB6E1F000262A6 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		BEFDC5341BBB7D4B000262A6 /* CustomizedTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedTabBarController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE2067F91BB7424D0060087A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE20680D1BB7424D0060087A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE2068181BB7424D0060087A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE2067F31BB7424D0060087A = {
+			isa = PBXGroup;
+			children = (
+				BE2067FE1BB7424D0060087A /* LinkinusaClient */,
+				BE2068131BB7424D0060087A /* LinkinusaClientTests */,
+				BE20681E1BB7424D0060087A /* LinkinusaClientUITests */,
+				BE2067FD1BB7424D0060087A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BE2067FD1BB7424D0060087A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE2067FC1BB7424D0060087A /* LinkinusaClient.app */,
+				BE2068101BB7424D0060087A /* LinkinusaClientTests.xctest */,
+				BE20681B1BB7424D0060087A /* LinkinusaClientUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE2067FE1BB7424D0060087A /* LinkinusaClient */ = {
+			isa = PBXGroup;
+			children = (
+				BE9D53C81BD7186A0090FCDB /* Data */,
+				BEFDC52F1BBB6DBF000262A6 /* Views */,
+				BE2067FF1BB7424D0060087A /* AppDelegate.swift */,
+				BE2068011BB7424D0060087A /* ViewController.swift */,
+				BE2068031BB7424D0060087A /* Main.storyboard */,
+				BE2068061BB7424D0060087A /* Assets.xcassets */,
+				BE2068081BB7424D0060087A /* LaunchScreen.storyboard */,
+				BE20680B1BB7424D0060087A /* Info.plist */,
+				BE64B6311BBBA04600AF99E4 /* UIDevice.swift */,
+			);
+			path = LinkinusaClient;
+			sourceTree = "<group>";
+		};
+		BE2068131BB7424D0060087A /* LinkinusaClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				BE2068141BB7424D0060087A /* LinkinusaClientTests.swift */,
+				BE2068161BB7424D0060087A /* Info.plist */,
+			);
+			path = LinkinusaClientTests;
+			sourceTree = "<group>";
+		};
+		BE20681E1BB7424D0060087A /* LinkinusaClientUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BE20681F1BB7424D0060087A /* LinkinusaClientUITests.swift */,
+				BE2068211BB7424D0060087A /* Info.plist */,
+			);
+			path = LinkinusaClientUITests;
+			sourceTree = "<group>";
+		};
+		BE9D53C81BD7186A0090FCDB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BE9D53C91BD7187E0090FCDB /* RatingData.swift */,
+				BE285C581BD9924200A6B678 /* OrderAllData.swift */,
+				BE9FB0AC1BD9FB9B00372026 /* OrderDetailData.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		BEFDC52F1BBB6DBF000262A6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BEFDC5321BBB6E1F000262A6 /* LoginVC.swift */,
+				BEFDC5341BBB7D4B000262A6 /* CustomizedTabBarController.swift */,
+				BE174EA81BBB8A8100EE759F /* VerifyVC.swift */,
+				BE8AB9A11BD7048C00FF06C4 /* RatingVC.swift */,
+				BE7FB4101BD7610800CC14A9 /* RateTabelCell.swift */,
+				BE285C541BD9739100A6B678 /* OrderVC.swift */,
+				BE285C561BD9918900A6B678 /* OrderAllTableCell.swift */,
+				BE9FB0AA1BD9FAEC00372026 /* OrderDetailTableCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE2067FB1BB7424D0060087A /* LinkinusaClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE2068241BB7424D0060087A /* Build configuration list for PBXNativeTarget "LinkinusaClient" */;
+			buildPhases = (
+				BE2067F81BB7424D0060087A /* Sources */,
+				BE2067F91BB7424D0060087A /* Frameworks */,
+				BE2067FA1BB7424D0060087A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LinkinusaClient;
+			productName = LinkinusaClient;
+			productReference = BE2067FC1BB7424D0060087A /* LinkinusaClient.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BE20680F1BB7424D0060087A /* LinkinusaClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE2068271BB7424D0060087A /* Build configuration list for PBXNativeTarget "LinkinusaClientTests" */;
+			buildPhases = (
+				BE20680C1BB7424D0060087A /* Sources */,
+				BE20680D1BB7424D0060087A /* Frameworks */,
+				BE20680E1BB7424D0060087A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE2068121BB7424D0060087A /* PBXTargetDependency */,
+			);
+			name = LinkinusaClientTests;
+			productName = LinkinusaClientTests;
+			productReference = BE2068101BB7424D0060087A /* LinkinusaClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BE20681A1BB7424D0060087A /* LinkinusaClientUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE20682A1BB7424D0060087A /* Build configuration list for PBXNativeTarget "LinkinusaClientUITests" */;
+			buildPhases = (
+				BE2068171BB7424D0060087A /* Sources */,
+				BE2068181BB7424D0060087A /* Frameworks */,
+				BE2068191BB7424D0060087A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE20681D1BB7424D0060087A /* PBXTargetDependency */,
+			);
+			name = LinkinusaClientUITests;
+			productName = LinkinusaClientUITests;
+			productReference = BE20681B1BB7424D0060087A /* LinkinusaClientUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE2067F41BB7424D0060087A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "TJV Studio";
+				TargetAttributes = {
+					BE2067FB1BB7424D0060087A = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 4UMEUN28F8;
+					};
+					BE20680F1BB7424D0060087A = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 4UMEUN28F8;
+						TestTargetID = BE2067FB1BB7424D0060087A;
+					};
+					BE20681A1BB7424D0060087A = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 4UMEUN28F8;
+						TestTargetID = BE2067FB1BB7424D0060087A;
+					};
+				};
+			};
+			buildConfigurationList = BE2067F71BB7424D0060087A /* Build configuration list for PBXProject "LinkinusaClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BE2067F31BB7424D0060087A;
+			productRefGroup = BE2067FD1BB7424D0060087A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BE2067FB1BB7424D0060087A /* LinkinusaClient */,
+				BE20680F1BB7424D0060087A /* LinkinusaClientTests */,
+				BE20681A1BB7424D0060087A /* LinkinusaClientUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BE2067FA1BB7424D0060087A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE20680A1BB7424D0060087A /* LaunchScreen.storyboard in Resources */,
+				BE2068071BB7424D0060087A /* Assets.xcassets in Resources */,
+				BE2068051BB7424D0060087A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE20680E1BB7424D0060087A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE2068191BB7424D0060087A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE2067F81BB7424D0060087A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE174EA91BBB8A8100EE759F /* VerifyVC.swift in Sources */,
+				BE64B6321BBBA04600AF99E4 /* UIDevice.swift in Sources */,
+				BE7FB4111BD7610800CC14A9 /* RateTabelCell.swift in Sources */,
+				BE9D53CA1BD7187E0090FCDB /* RatingData.swift in Sources */,
+				BE9FB0AB1BD9FAEC00372026 /* OrderDetailTableCell.swift in Sources */,
+				BEFDC5351BBB7D4B000262A6 /* CustomizedTabBarController.swift in Sources */,
+				BEFDC5331BBB6E1F000262A6 /* LoginVC.swift in Sources */,
+				BE8AB9A21BD7048C00FF06C4 /* RatingVC.swift in Sources */,
+				BE2068021BB7424D0060087A /* ViewController.swift in Sources */,
+				BE285C591BD9924200A6B678 /* OrderAllData.swift in Sources */,
+				BE2068001BB7424D0060087A /* AppDelegate.swift in Sources */,
+				BE9FB0AD1BD9FB9B00372026 /* OrderDetailData.swift in Sources */,
+				BE285C551BD9739100A6B678 /* OrderVC.swift in Sources */,
+				BE285C571BD9918900A6B678 /* OrderAllTableCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE20680C1BB7424D0060087A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE2068151BB7424D0060087A /* LinkinusaClientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE2068171BB7424D0060087A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE2068201BB7424D0060087A /* LinkinusaClientUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BE2068121BB7424D0060087A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE2067FB1BB7424D0060087A /* LinkinusaClient */;
+			targetProxy = BE2068111BB7424D0060087A /* PBXContainerItemProxy */;
+		};
+		BE20681D1BB7424D0060087A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE2067FB1BB7424D0060087A /* LinkinusaClient */;
+			targetProxy = BE20681C1BB7424D0060087A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BE2068031BB7424D0060087A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE2068041BB7424D0060087A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BE2068081BB7424D0060087A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE2068091BB7424D0060087A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BE2068221BB7424D0060087A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BE2068231BB7424D0060087A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BE2068251BB7424D0060087A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LinkinusaClient/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TJV.LinkinusaClient;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BE2068261BB7424D0060087A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LinkinusaClient/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TJV.LinkinusaClient;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		BE2068281BB7424D0060087A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LinkinusaClientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TJV.LinkinusaClientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LinkinusaClient.app/LinkinusaClient";
+			};
+			name = Debug;
+		};
+		BE2068291BB7424D0060087A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LinkinusaClientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TJV.LinkinusaClientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LinkinusaClient.app/LinkinusaClient";
+			};
+			name = Release;
+		};
+		BE20682B1BB7424D0060087A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = LinkinusaClientUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TJV.LinkinusaClientUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = LinkinusaClient;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		BE20682C1BB7424D0060087A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = LinkinusaClientUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TJV.LinkinusaClientUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = LinkinusaClient;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE2067F71BB7424D0060087A /* Build configuration list for PBXProject "LinkinusaClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE2068221BB7424D0060087A /* Debug */,
+				BE2068231BB7424D0060087A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE2068241BB7424D0060087A /* Build configuration list for PBXNativeTarget "LinkinusaClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE2068251BB7424D0060087A /* Debug */,
+				BE2068261BB7424D0060087A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE2068271BB7424D0060087A /* Build configuration list for PBXNativeTarget "LinkinusaClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE2068281BB7424D0060087A /* Debug */,
+				BE2068291BB7424D0060087A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE20682A1BB7424D0060087A /* Build configuration list for PBXNativeTarget "LinkinusaClientUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE20682B1BB7424D0060087A /* Debug */,
+				BE20682C1BB7424D0060087A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE2067F41BB7424D0060087A /* Project object */;
+}
