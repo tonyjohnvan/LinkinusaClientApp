@@ -90,6 +90,32 @@ class VerifyVC : UIViewController {
     
     @IBAction func btnVerifyTUI(sender: UIButton) {
         //TODO: Your verification code goes to here
+        let orderNum : String = verifyLabel.text!
+        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/businessUsers/" + orderNum + "/scanOrder")
+        // request scancode rest api from backend
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            let dict: NSDictionary!=(try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
+            // get request status from output
+            let status : Int = dict.valueForKey("status") as! Int
+            
+            if(status == 0){
+                let alert = UIAlertController(title: "Alert", message: "Order verified successfully!", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }else if(status == 1){
+                let alert = UIAlertController(title: "Alert", message: "Order has already been submitted!!", preferredStyle: .Alert)
+                print(status)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }else if(status == 2){
+                let alert = UIAlertController(title: "Alert", message: "Order not found!", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            
+        }
+        
+        task.resume()
     }
     
     
