@@ -91,7 +91,7 @@ class VerifyVC : UIViewController {
     @IBAction func btnVerifyTUI(sender: UIButton) {
         //TODO: Your verification code goes to here
         let orderNum : String = verifyLabel.text!
-        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/businessUsers/" + orderNum + "/scanOrder")
+        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/scanOrder/" + orderNum)
         // request scancode rest api from backend
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             let dict: NSDictionary!=(try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
