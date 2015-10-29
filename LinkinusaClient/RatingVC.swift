@@ -26,6 +26,10 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return UIStatusBarStyle.LightContent
     }
     
+    override func viewWillLayoutSubviews() {
+        startConnection()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +45,7 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         mainTableView.allowsSelection = false;
         mainTableView.separatorStyle = .None
         
-        startConnection()
+        
         
 //        let merchantId : String = "UOEzAnYfBr"
 //        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/rating/" + merchantId)
@@ -111,7 +115,7 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         print("Button \(buttonRow) tapped")
         
         //1. Create the alert controller.
-        let alert = UIAlertController(title: "\(rates[buttonRow].username!)的留言", message: rates[buttonRow].content, preferredStyle: .Alert)
+        let alert = UIAlertController(title: "\(rates[buttonRow].username)的留言", message: rates[buttonRow].content, preferredStyle: .Alert)
         
         //2. Add the text field. You can configure it however you need.
         alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
@@ -168,16 +172,17 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let ratings:NSArray = json["rating"] as! NSArray
         print(ratings)
         for rating in ratings{
-            let username = rating["username"] as? NSString as? String
-            let content = rating["content"]! as? NSString as? String
-            let date = rating["date"]! as? NSString as? String
-            let replyDate = rating["replyDate"]! as? NSString as? String
-            let reply = rating["reply"]! as? NSString as? String
-            let rate:Rate = Rate(username: username!, content: content!, star: "5", date: date!, replyDate: replyDate!, reply: reply!)
+            let username = rating["username"] as! NSString as String
+            let content = rating["content"] as! NSString as String
+            let date = rating["date"] as! NSString as String
+            let replyDate = rating["replyDate"] as! NSString as String
+            let reply = rating["reply"] as! NSString as String
+            let rate:Rate = Rate(username: username, content: content, star: "5", date: date, replyDate: replyDate, reply: reply)
             print(rate)
             self.rates.append(rate)
         }
         
         data.setData(NSData())
+        mainTableView.reloadData()
     }
 }

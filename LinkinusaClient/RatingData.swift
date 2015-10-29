@@ -11,14 +11,14 @@ import Foundation
 import UIKit
 
 struct Rate {
-    var username: String?
-    var content: String?
+    var username: String
+    var content: String
     var star: String
-    var date: String?
-    var replyDate: String?
-    var reply: String?
-    
-    init(username: String?, content: String?, star: String, date: String?, replyDate: String?, reply: String?) {
+    var date: String
+    var replyDate: String
+    var reply: String
+
+    init(username: String, content: String, star: String, date: String, replyDate: String, reply: String) {
         self.username = username
         self.content = content
         self.star = star
