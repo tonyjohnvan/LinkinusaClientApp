@@ -15,8 +15,11 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var mainTableView: UITableView!
     
+    lazy var data = NSMutableData()
     
-    var rates:[Rate] = RateData
+    
+    //var rates:[Rate] = RateData
+    var rates:[Rate] = []
     
     // white status bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -38,8 +41,28 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         mainTableView.allowsSelection = false;
         mainTableView.separatorStyle = .None
         
+        startConnection()
+        
+//        let merchantId : String = "UOEzAnYfBr"
+//        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/rating/" + merchantId)
+//        // request scancode rest api from backend
+//        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+//            if let json: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as? NSDictionary{
+//                // get request status from output
+//                if let ratings = json["result"] as? NSArray {
+//                    for rating in ratings{
+//                        let rate:Rate = Rate(username: rating["username"] as? String, content: rating["content"] as? String, star: (rating["star"] as? String)!, date: rating["date"] as? String, replyDate: rating["replyDate"] as? String, reply: rating["reply"] as? String)
+//                        self.rates.append(rate)
+//                    }
+//                }
+//                print(self.rates)
+//            }
+//            
+//        }
+//        
+//        task.resume()
+        
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -122,5 +145,39 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    
+    // create url connection and send rest api request
+    func startConnection(){
+        //test data: merchant ID
+        let merchantId : String = "UOEzAnYfBr"
+        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/rating/" + merchantId)
+        
+        let request: NSURLRequest = NSURLRequest(URL: url!)
+        let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
+        connection.start()
+    }
+    // receive data from server
+    func connection(connection: NSURLConnection, didReceiveData data: NSData){
+        self.data.appendData(data)
+    }
+    // data received successfully
+    func connectionDidFinishLoading(connection: NSURLConnection) {
+        // convert json data to swift object
+        let json: NSDictionary = ((try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary)
+        let ratings:NSArray = json["rating"] as! NSArray
+        print(ratings)
+        for rating in ratings{
+            let username = rating["username"] as? NSString as? String
+            let content = rating["content"]! as? NSString as? String
+            let date = rating["date"]! as? NSString as? String
+            let replyDate = rating["replyDate"]! as? NSString as? String
+            let reply = rating["reply"]! as? NSString as? String
+            let rate:Rate = Rate(username: username!, content: content!, star: "5", date: date!, replyDate: replyDate!, reply: reply!)
+            print(rate)
+            self.rates.append(rate)
+        }
+        
+        data.setData(NSData())
     }
 }

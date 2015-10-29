@@ -10,7 +10,7 @@ import Foundation
 
 import UIKit
 
-class VerifyVC : UIViewController {
+class VerifyVC : UIViewController, NSURLConnectionDelegate {
     @IBOutlet weak var btn1: UIButton!
     @IBOutlet weak var btn2: UIButton!
     @IBOutlet weak var btn3: UIButton!
@@ -27,6 +27,8 @@ class VerifyVC : UIViewController {
     @IBOutlet weak var verifyLabel: UILabel!
     
     let verifyCodeLength = 16
+    
+    lazy var data = NSMutableData()
     
     @IBAction func btn1TUI(sender: UIButton) {
         if(verifyLabel.text?.characters.count<verifyCodeLength){
@@ -90,32 +92,7 @@ class VerifyVC : UIViewController {
     
     @IBAction func btnVerifyTUI(sender: UIButton) {
         //TODO: Your verification code goes to here
-        let orderNum : String = verifyLabel.text!
-        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/scanOrder/" + orderNum)
-        // request scancode rest api from backend
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            let dict: NSDictionary!=(try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
-            // get request status from output
-            let status : Int = dict.valueForKey("status") as! Int
-            
-            if(status == 0){
-                let alert = UIAlertController(title: "Alert", message: "Order verified successfully!", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }else if(status == 1){
-                let alert = UIAlertController(title: "Alert", message: "Order has already been submitted!!", preferredStyle: .Alert)
-                print(status)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }else if(status == 2){
-                let alert = UIAlertController(title: "Alert", message: "Order not found!", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            
-        }
-        
-        task.resume()
+        startConnection()
     }
     
     
@@ -145,6 +122,44 @@ class VerifyVC : UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func startConnection(){
+        let orderNum : String = verifyLabel.text!
+        let urlPath: String = "http://linkinusa-backend.herokuapp.com/api/scanOrder/" + orderNum
+        let url: NSURL = NSURL(string: urlPath)!
+        let request: NSURLRequest = NSURLRequest(URL: url)
+        let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
+        connection.start()
+    }
+    
+    func connection(connection: NSURLConnection, didReceiveData data: NSData){
+        self.data.appendData(data)
+    }
+    
+    func connectionDidFinishLoading(connection: NSURLConnection) {
+        let jsonResult: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
+        let status : String = jsonResult.valueForKey("status") as! String
+        print(status)
+        if(status == "0"){
+            let alert = UIAlertController(title: "Alert", message: "Order verified successfully!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }else if(status == "1"){
+            let alert = UIAlertController(title: "Alert", message: "Order has already been submitted!!", preferredStyle: .Alert)
+            print(status)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }else if(status == "2"){
+            let alert = UIAlertController(title: "Alert", message: "Order not found!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }else if(status == "3"){
+            let alert = UIAlertController(title: "Alert", message: "Unknown problem!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        data.setData(NSData())
     }
     
     
