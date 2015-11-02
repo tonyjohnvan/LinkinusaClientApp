@@ -10,7 +10,7 @@ import Foundation
 
 import UIKit
 
-class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate {
     @IBOutlet weak var topperView: UIView!
     
     @IBOutlet weak var btnAllOrders: UIButton!
@@ -18,6 +18,8 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var btnOrderDetail: UIButton!
     
     @IBOutlet weak var topTabBG: UIImageView!
+    
+    lazy var data = NSMutableData()
     
     @IBAction func btnAllOrdersAct(sender: UIButton) {
         // Select All Orders and show allOrderTV(TabelView)
@@ -40,12 +42,12 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // table. allOrderTV
     @IBOutlet weak var allOrderTV: UITableView!
     
-    var allOrders:[OrderAll] = OrderAllData
+    var allOrders:[OrderAll] = []//OrderAllData
     
     // table. orderDetailTV
     @IBOutlet weak var orderDetailTV: UITableView!
     
-    var orderDetails:[OrderDetail] = OrderDetailData
+    var orderDetails:[OrderDetail] = []//OrderDetailData
     
     // white status bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -72,6 +74,8 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         //hide orderdetail table
         orderDetailTV.hidden = true
+        
+        startConnection()
         
     }
     
@@ -145,6 +149,56 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         //TODO: use this part to change the status of order
         let buttonRow = sender.tag
         print("Button \(buttonRow) tapped")
+    }
+    
+    // create url connection and send rest api request
+    func startConnection(){
+        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let merchantId : String = prefs.stringForKey("merchantId")!
+        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/order/\(merchantId)")
+        
+        let request: NSURLRequest = NSURLRequest(URL: url!)
+        let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
+        connection.start()
+    }
+    // receive data from server
+    func connection(connection: NSURLConnection, didReceiveData data: NSData){
+        self.data.appendData(data)
+    }
+    // data received successfully
+    func connectionDidFinishLoading(connection: NSURLConnection) {
+        // convert json data to swift object
+        print(data)
+        let json: NSDictionary = ((try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary)
+        let totalOrders: NSArray = json["totalOrder"] as! NSArray
+        let orderDetail: NSArray = json["orderDetail"] as! NSArray
+        if (totalOrders.count > 0 && orderDetail.count > 0){
+            for order in totalOrders{
+                let orderName = order["orderName"] as! NSString as String
+                let originalPrice = order["originalPrice"] as! NSString as String
+                let price = order["price"] as! NSString as String
+                let sold = order["sold"] as! Int
+                let redeemed = order["redeemed"] as! Int
+                let orderAll: OrderAll = OrderAll(orderName: orderName, oringinalPrice: originalPrice, price: price, sold: sold, redeemed: redeemed)
+                self.allOrders.append(orderAll)
+            }
+            for detail in orderDetail{
+                let orderNo = detail["orderNo"] as! NSString as String
+                let time = detail["time"] as! NSString as String
+                let username = detail["username"] as! NSString as String
+                let quantity = detail["quantity"] as! Int
+                let status = detail["status"] as! Int
+                let orderDetail: OrderDetail = OrderDetail(orderNo: orderNo, time: time, username: username, quantity: quantity, status: status)
+                self.orderDetails.append(orderDetail)
+            }
+        }else {
+            let alert = UIAlertController(title: "Alert", message: "No order found for you!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        data.setData(NSData())
+        allOrderTV.reloadData()
+        orderDetailTV.reloadData()
     }
     
 }

@@ -23,13 +23,13 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
     @IBOutlet weak var btn0: UIButton!
     @IBOutlet weak var btnVerify: UIButton!
     @IBOutlet weak var btnDelete: UIButton!
-    
+
     @IBOutlet weak var verifyLabel: UILabel!
-    
+
     let verifyCodeLength = 16
-    
+
     lazy var data = NSMutableData()
-    
+
     @IBAction func btn1TUI(sender: UIButton) {
         if(verifyLabel.text?.characters.count<verifyCodeLength){
             verifyLabel.text = (verifyLabel.text ?? "") + "1"
@@ -88,55 +88,55 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
             verifyLabel.text = (name as NSString).substringToIndex(substringIndex)
         }
     }
-    
-    
+
+
     @IBAction func btnVerifyTUI(sender: UIButton) {
         //TODO: Your verification code goes to here
         startConnection()
     }
-    
-    
+
+
     @IBOutlet weak var topViewWrapper: UIView!
     // white status bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    
+
     override func viewDidLayoutSubviews() {
-        
+
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         topViewWrapper.layer.shadowOffset = CGSize(width: 0, height: 2.4)
         topViewWrapper.layer.shadowOpacity = 0.3
         topViewWrapper.layer.shadowRadius = 6
         topViewWrapper.layer.borderWidth = 0
-        
+
         verifyLabel.textColor = UIColor.whiteColor()
-        
-        
+
+
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func startConnection(){
         let orderNum : String = verifyLabel.text!
-        let urlPath: String = "http://linkinusa-backend.herokuapp.com/api/scanOrder/" + orderNum
+        let urlPath: String = "http://linkinusa-backend.herokuapp.com/api/scanOrder/\(orderNum)"
         let url: NSURL = NSURL(string: urlPath)!
         let request: NSURLRequest = NSURLRequest(URL: url)
         let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
         connection.start()
     }
-    
+
     func connection(connection: NSURLConnection, didReceiveData data: NSData){
         self.data.appendData(data)
     }
-    
+
     func connectionDidFinishLoading(connection: NSURLConnection) {
         let jsonResult: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
         let status : String = jsonResult.valueForKey("status") as! String
@@ -145,22 +145,25 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
             let alert = UIAlertController(title: "Alert", message: "Order verified successfully!", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-        }else if(status == "1"){
+        }else if(status == "1")
+        {
             let alert = UIAlertController(title: "Alert", message: "Order has already been submitted!!", preferredStyle: .Alert)
             print(status)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-        }else if(status == "2"){
+        }else if(status == "2")
+        {
             let alert = UIAlertController(title: "Alert", message: "Order not found!", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-        }else if(status == "3"){
+        }else if(status == "3")
+        {
             let alert = UIAlertController(title: "Alert", message: "Unknown problem!", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         data.setData(NSData())
     }
-    
-    
+
+
 }
