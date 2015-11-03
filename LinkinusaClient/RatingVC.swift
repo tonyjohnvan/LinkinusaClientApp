@@ -11,6 +11,15 @@ import Foundation
 import UIKit
 
 class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate {
+    
+    @IBOutlet weak var lblAvgScore: UILabel!
+    @IBOutlet weak var lbl5sNum: UILabel!
+    @IBOutlet weak var lbl4sNum: UILabel!
+    @IBOutlet weak var lbl3sNum: UILabel!
+    @IBOutlet weak var lbl2sNum: UILabel!
+    @IBOutlet weak var lbl1sNum: UILabel!
+    @IBOutlet weak var lblNumOfReviews: UILabel!
+    
     @IBOutlet weak var topperView: UIView!
 
     @IBOutlet weak var mainTableView: UITableView!

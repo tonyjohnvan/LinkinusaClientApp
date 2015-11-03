@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -610,7 +610,7 @@
                                                     <rect key="frame" x="8" y="8" width="312" height="183"/>
                                                     <animations/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="502" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="7339AEAA-8D65-42E4-BB52-466C44CFA6E4" translatesAutoresizingMaskIntoConstraints="NO" id="3F3-WT-XAE">
+                                                <imageView userInteractionEnabled="NO" tag="502" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5B9B9D79-1B44-4907-812D-5C83BDDECEB7" translatesAutoresizingMaskIntoConstraints="NO" id="3F3-WT-XAE">
                                                     <rect key="frame" x="18" y="23" width="58" height="20"/>
                                                     <animations/>
                                                     <constraints>
@@ -906,6 +906,13 @@
                     </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="lbl1sNum" destination="x71-cH-BL7" id="05O-Oe-9mZ"/>
+                        <outlet property="lbl2sNum" destination="i7H-ui-4mZ" id="b4E-0L-s8E"/>
+                        <outlet property="lbl3sNum" destination="CpI-CT-SHh" id="7Dh-C3-b4r"/>
+                        <outlet property="lbl4sNum" destination="thK-Ru-2n9" id="QWz-Xp-qVS"/>
+                        <outlet property="lbl5sNum" destination="6E9-9O-K6l" id="2gB-Nl-7aU"/>
+                        <outlet property="lblAvgScore" destination="Ek9-gg-q4o" id="gG9-kb-138"/>
+                        <outlet property="lblNumOfReviews" destination="fid-k5-G5s" id="tbG-H4-T4n"/>
                         <outlet property="mainTableView" destination="Arq-qr-0S8" id="nJ0-0N-AFA"/>
                         <outlet property="topperView" destination="YmD-4Q-hHB" id="NVR-1I-f3P"/>
                     </connections>
@@ -1236,12 +1243,10 @@
         <image name="3" width="125" height="125"/>
         <image name="4" width="125" height="125"/>
         <image name="5" width="125" height="125"/>
-        <image name="6" width="125" height="125"/>
-        <image name="7" width="125" height="125"/>
-        <image name="7339AEAA-8D65-42E4-BB52-466C44CFA6E4" width="75" height="42">
+        <image name="5B9B9D79-1B44-4907-812D-5C83BDDECEB7" width="75" height="42">
             <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
-GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
+YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
+GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
 DBIAwAAAgAKACtISCRMVWk5TLm9iamVjdHOhFIADgAnSEgkXGqIYGYAEgAWACBAA0h0JHh9fEBROU1RJ
 RkZSZXByZXNlbnRhdGlvboAGgAdPET5GTU0AKgAAMUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgNX/BnbG7DZ2yOtzdMfqoHTJ6sV1yOrfdcjq7HXI6u91yOrv
@@ -1509,15 +1514,17 @@ v/XAcMDswWfB48JfwtvDWMPUxFHEzsVLxcjGRsbDx0HHv8g9yLzJOsm5yjjKt8s2y7bMNcy1zTXNtc42
 zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp22vvbgNwF3IrdEN2W
 3hzeot8p36/gNuC94UThzOJT4tvjY+Pr5HPk/OWE5g3mlucf56noMui86Ubp0Opb6uXrcOv77IbtEe2c
 7ijutO9A78zwWPDl8XLx//KM8xnzp/Q09ML1UPXe9m32+/eK+Bn4qPk4+cf6V/rn+3f8B/yY/Sn9uv5L
-/tz/bf//0iIjJCVaJGNsYXNzbmFtZVgkY2xhc3Nlc18QEE5TQml0bWFwSW1hZ2VSZXCjJCYnWk5TSW1h
-Z2VSZXBYTlNPYmplY3TSIiMpKldOU0FycmF5oikn0iIjLC1eTlNNdXRhYmxlQXJyYXmjLCkn0y8wCTEy
-M1dOU1doaXRlXE5TQ29sb3JTcGFjZUQwIDAAEAOAC9IiIzU2V05TQ29sb3KiNSfSIiM4OVdOU0ltYWdl
-ojgnXxAPTlNLZXllZEFyY2hpdmVy0Tw9VHJvb3SAAQAIABEAGgAjAC0AMgA3AEUASwBUAFsAaABvAHcA
-eQB+AIAAggCHAJIAlACWAJgAnQCgAKIApACmAKgArQDEAMYAyD8SPxc/Ij8rPz4/Qj9NP1Y/Wz9jP2Y/
-az96P34/hT+NP5o/nz+hP6M/qD+wP7M/uD/AP8M/1T/YP90AAAAAAAACAQAAAAAAAAA+AAAAAAAAAAAA
-AAAAAAA/3w
+/tz/bf//0iIjJCVaJGNsYXNzbmFtZVgkY2xhc3Nlc18QEE5TQml0bWFwSW1hZ2VSZXCjJicoXxAQTlNC
+aXRtYXBJbWFnZVJlcFpOU0ltYWdlUmVwWE5TT2JqZWN00iIjKitXTlNBcnJheaIqKNIiIy0uXk5TTXV0
+YWJsZUFycmF5oy0qKNMwMQkyMzRXTlNXaGl0ZVxOU0NvbG9yU3BhY2VEMCAwABADgAvSIiM2N1dOU0Nv
+bG9yojYo0iIjOTpXTlNJbWFnZaI5KF8QD05TS2V5ZWRBcmNoaXZlctE9PlRyb290gAEACAARABoAIwAt
+ADIANwBFAEsAVABbAGgAbwB3AHkAfgCAAIIAhwCSAJQAlgCYAJ0AoACiAKQApgCoAK0AxADGAMg/Ej8X
+PyI/Kz8+P0I/VT9gP2k/bj92P3k/fj+NP5E/mD+gP60/sj+0P7Y/uz/DP8Y/yz/TP9Y/6D/rP/AAAAAA
+AAACAQAAAAAAAAA/AAAAAAAAAAAAAAAAAAA/8g
 </mutableData>
         </image>
+        <image name="6" width="125" height="125"/>
+        <image name="7" width="125" height="125"/>
         <image name="8" width="125" height="125"/>
         <image name="9" width="125" height="125"/>
         <image name="BG" width="621" height="1104"/>
