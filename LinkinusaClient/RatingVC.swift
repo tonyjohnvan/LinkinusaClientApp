@@ -28,7 +28,16 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
 
     @IBAction func actLogout(sender: UIButton) {
         let alert = UIAlertController(title: "登出", message: "您确定要登出系统？未保存的修改将丢失", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { action in
+            let appDomain = NSBundle.mainBundle().bundleIdentifier
+            NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
+            
+            let alert = UIAlertController(title: "", message: "登出成功!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: { action in
+                self.performSegueWithIdentifier("logout2", sender: self)
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }))
         alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -144,8 +153,8 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
                 
                 if let parseJSON = json {
                     let status = parseJSON["status"] as? String
-                    let alert = UIAlertController(title: "Alert", message: status, preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+                    let alert = UIAlertController(title: "", message: status, preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: { (action) -> Void in
                         //display reply on page
                         let date = NSDate()
                         let formatter = NSDateFormatter()
@@ -202,6 +211,34 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
         // convert json data to swift object
         let json: NSDictionary = ((try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary)
         let ratings: NSArray = json["rating"] as! NSArray
+        let ratingStars: NSArray = json["ratingStars"] as! NSArray
+        
+        if (ratingStars.count > 0){
+            lblNumOfReviews.text = String(ratingStars.count) + " 人评价"
+            var sum = 0, data:[Int] = [0, 0, 0, 0, 0]
+            for ratingStar in ratingStars{
+                let content = ratingStar["star"] as! Int
+                sum += ratingStar["star"] as! Int
+                switch content {
+                case 1: data[0] += 1
+                        break
+                case 2: data[1] += 1
+                        break
+                case 3: data[2] += 1
+                        break
+                case 4: data[3] += 1
+                        break
+                case 5: data[4] += 1
+                default: break
+                }
+            }
+            lbl1sNum.text = String(data[0])
+            lbl2sNum.text = String(data[1])
+            lbl3sNum.text = String(data[2])
+            lbl4sNum.text = String(data[3])
+            lbl5sNum.text = String(data[4])
+            lblAvgScore.text = String(Double(sum) / Double(ratingStars.count))
+        }
         if (ratings.count > 0){
             for rating in ratings{
                 let commentId = rating["commentId"] as! NSString as String
@@ -214,8 +251,8 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
                 self.rates.append(rate)
             }
         }else{
-            let alert = UIAlertController(title: "Alert", message: "No rating found for you!", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            let alert = UIAlertController(title: "", message: "暂无评论!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         data.setData(NSData())

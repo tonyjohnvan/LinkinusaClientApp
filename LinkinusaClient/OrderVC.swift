@@ -21,7 +21,16 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
     
     @IBAction func actLogout(sender: UIButton) {
         let alert = UIAlertController(title: "登出", message: "您确定要登出系统？未保存的修改将丢失", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: {action in
+            let appDomain = NSBundle.mainBundle().bundleIdentifier
+            NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
+            
+            let alert = UIAlertController(title: "", message: "登出成功!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: { action in
+                self.performSegueWithIdentifier("logout3", sender: self)
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }))
         alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -167,8 +176,8 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
             
             if let parseJSON = json {
                 let status = parseJSON["status"] as? String
-                let alert = UIAlertController(title: "Alert", message: status, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                let alert = UIAlertController(title: "", message: status, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
                 //display reply on page
                 self.orderDetails[buttonRow].status = 0
@@ -222,8 +231,8 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
                 self.orderDetails.append(orderDetail)
             }
         }else {
-            let alert = UIAlertController(title: "Alert", message: "No order found for you!", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            let alert = UIAlertController(title: "", message: "暂无订单!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         data.setData(NSData())

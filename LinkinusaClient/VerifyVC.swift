@@ -28,7 +28,17 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
 
     @IBAction func actLogout(sender: AnyObject) {
         let alert = UIAlertController(title: "登出", message: "您确定要登出系统？未保存的修改将丢失", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { action in
+            let appDomain = NSBundle.mainBundle().bundleIdentifier
+            NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
+            
+            let alert = UIAlertController(title: "", message: "登出成功!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: { action in
+                self.performSegueWithIdentifier("logout1", sender: self)
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }))
         alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -148,24 +158,24 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
         let status : String = jsonResult.valueForKey("status") as! String
         print(status)
         if(status == "0"){
-            let alert = UIAlertController(title: "Alert", message: "Order verified successfully!", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            let alert = UIAlertController(title: "", message: "订单验证成功!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }else if(status == "1")
         {
-            let alert = UIAlertController(title: "Alert", message: "Order has already been submitted!!", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "", message: "请勿重复验证!", preferredStyle: .Alert)
             print(status)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }else if(status == "2")
         {
-            let alert = UIAlertController(title: "Alert", message: "Order not found!", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            let alert = UIAlertController(title: "", message: "订单不存在!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }else if(status == "3")
         {
-            let alert = UIAlertController(title: "Alert", message: "Unknown problem!", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            let alert = UIAlertController(title: "", message: "未知错误，请重试!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         data.setData(NSData())

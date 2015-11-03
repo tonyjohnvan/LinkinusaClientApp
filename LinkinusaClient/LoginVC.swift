@@ -37,10 +37,10 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
         if ( username.isEqualToString("") || password.isEqualToString("") ) {
             
             let alertView:UIAlertView = UIAlertView()
-            alertView.title = "Sign in Failed!"
-            alertView.message = "All fields are required"
+            alertView.title = "登录失败!"
+            alertView.message = "用户名和密码不能为空！"
             alertView.delegate = self
-            alertView.addButtonWithTitle("OK")
+            alertView.addButtonWithTitle("确认")
             alertView.show()
         } else {
             // get user info from API
@@ -103,17 +103,17 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
             self.performSegueWithIdentifier("login", sender: self)
         } else if (status == "1"){
             let alertView:UIAlertView = UIAlertView()
-            alertView.title = "Sign in Failed!"
-            alertView.message = "Customers are not allowed to login!"
+            alertView.title = "登录失败!"
+            alertView.message = "消费者不允许登录!"
             alertView.delegate = self
-            alertView.addButtonWithTitle("OK")
+            alertView.addButtonWithTitle("确认")
             alertView.show()
         } else if(status == "2"){
             let alertView:UIAlertView = UIAlertView()
-            alertView.title = "Sign in Failed!"
-            alertView.message = "Username or password incorrect!"
+            alertView.title = "登录失败!"
+            alertView.message = "用户名或密码错误!"
             alertView.delegate = self
-            alertView.addButtonWithTitle("OK")
+            alertView.addButtonWithTitle("确认")
             alertView.show()
         }
         data.setData(NSData())
