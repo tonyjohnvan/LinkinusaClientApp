@@ -26,6 +26,12 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
 
     @IBOutlet weak var verifyLabel: UILabel!
 
+    @IBAction func actLogout(sender: AnyObject) {
+        let alert = UIAlertController(title: "登出", message: "您确定要登出系统？未保存的修改将丢失", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     let verifyCodeLength = 16
 
     lazy var data = NSMutableData()

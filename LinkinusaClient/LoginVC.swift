@@ -19,6 +19,8 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     
+    @IBOutlet weak var LoadingIndicator: UIView!
+    @IBOutlet weak var loadingIcon: UIActivityIndicatorView!
 //    @IBOutlet var textFieldToBottomLayoutGuideConstraint: NSLayoutConstraint!
     
     lazy var data = NSMutableData()
@@ -31,6 +33,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
     @IBAction func LoginBtn(sender: AnyObject) {
         let username:NSString = txtUsername.text! as NSString
         let password:NSString = txtPassword.text! as NSString
+        
         if ( username.isEqualToString("") || password.isEqualToString("") ) {
             
             let alertView:UIAlertView = UIAlertView()
@@ -49,6 +52,8 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        LoadingIndicator.hidden = true
+        
         // rounded corner
         loginBtn.layer.cornerRadius = 8
         regesterBtn.layer.cornerRadius = 8
@@ -57,6 +62,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
         
+        loadingIcon.startAnimating()
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,6 +77,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
     }
     
     func startConnection(){
+        LoadingIndicator.hidden = false
         let username:String = txtUsername.text!
         let password:String = txtPassword.text!
         let urlPath: String = "http://linkinusa-backend.herokuapp.com/api/merchantLogin/\(username)/\(password)"
@@ -85,6 +92,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
     }
     
     func connectionDidFinishLoading(connection: NSURLConnection) {
+        LoadingIndicator.hidden = true
         let jsonResult: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
         let status : String = jsonResult.valueForKey("status") as! String
         if (status == "0"){

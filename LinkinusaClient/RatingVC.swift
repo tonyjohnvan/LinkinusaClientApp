@@ -26,6 +26,12 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
 
     lazy var data = NSMutableData()
 
+    @IBAction func actLogout(sender: UIButton) {
+        let alert = UIAlertController(title: "登出", message: "您确定要登出系统？未保存的修改将丢失", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
 
     //var rates:[Rate] = RateData
     var rates: [Rate] = []
