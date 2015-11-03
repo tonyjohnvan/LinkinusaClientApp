@@ -15,7 +15,6 @@ import UIKit
 class LoginVC: UIViewController, NSURLConnectionDelegate {
     
     @IBOutlet weak var loginBtn: UIButton!
-    @IBOutlet weak var regesterBtn: UIButton!
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     
@@ -56,7 +55,6 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
         
         // rounded corner
         loginBtn.layer.cornerRadius = 8
-        regesterBtn.layer.cornerRadius = 8
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
