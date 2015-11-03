@@ -155,6 +155,30 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
         //TODO: use this part to change the status of order
         let buttonRow = sender.tag
         print("Button \(buttonRow) tapped")
+        
+        let orderNum = orderDetails[buttonRow].orderNo
+        
+        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/submitOrder/\(orderNum)")
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "GET"
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
+            data, response, error in
+            let json = ((try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)) as? NSDictionary)
+            
+            if let parseJSON = json {
+                let status = parseJSON["status"] as? String
+                let alert = UIAlertController(title: "Alert", message: status, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+                //display reply on page
+                self.orderDetails[buttonRow].status = 0
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.orderDetailTV.reloadData()
+                })
+
+            }
+        }
+        task.resume()
     }
     
     // create url connection and send rest api request
