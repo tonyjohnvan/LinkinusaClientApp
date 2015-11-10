@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C49B93E1BEACB1A00A43453 /* ResetPwdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49B93D1BEACB1A00A43453 /* ResetPwdVC.swift */; };
 		BE174EA91BBB8A8100EE759F /* VerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE174EA81BBB8A8100EE759F /* VerifyVC.swift */; };
 		BE2068001BB7424D0060087A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2067FF1BB7424D0060087A /* AppDelegate.swift */; };
 		BE2068021BB7424D0060087A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2068011BB7424D0060087A /* ViewController.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C49B93D1BEACB1A00A43453 /* ResetPwdVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPwdVC.swift; sourceTree = "<group>"; };
 		BE174EA81BBB8A8100EE759F /* VerifyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyVC.swift; sourceTree = "<group>"; };
 		BE2067FC1BB7424D0060087A /* LinkinusaClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkinusaClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2067FF1BB7424D0060087A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				BE285C541BD9739100A6B678 /* OrderVC.swift */,
 				BE285C561BD9918900A6B678 /* OrderAllTableCell.swift */,
 				BE9FB0AA1BD9FAEC00372026 /* OrderDetailTableCell.swift */,
+				2C49B93D1BEACB1A00A43453 /* ResetPwdVC.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE174EA91BBB8A8100EE759F /* VerifyVC.swift in Sources */,
+				2C49B93E1BEACB1A00A43453 /* ResetPwdVC.swift in Sources */,
 				BE64B6321BBBA04600AF99E4 /* UIDevice.swift in Sources */,
 				BE7FB4111BD7610800CC14A9 /* RateTabelCell.swift in Sources */,
 				BE9D53CA1BD7187E0090FCDB /* RatingData.swift in Sources */,

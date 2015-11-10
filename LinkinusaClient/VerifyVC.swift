@@ -107,8 +107,15 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
 
 
     @IBAction func btnVerifyTUI(sender: UIButton) {
-        //TODO: Your verification code goes to here
-        startConnection()
+        //order verification
+        let orderNum:NSString = verifyLabel.text! as NSString
+        if (orderNum.isEqualToString("")){
+            let alert = UIAlertController(title: "", message: "订单号不能为空！", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }else{
+            startConnection()
+        }
     }
 
 
@@ -159,23 +166,31 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
         print(status)
         if(status == "0"){
             let alert = UIAlertController(title: "", message: "订单验证成功!", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: {action in
+                self.verifyLabel.text = ""
+            }))
             self.presentViewController(alert, animated: true, completion: nil)
         }else if(status == "1")
         {
             let alert = UIAlertController(title: "", message: "请勿重复验证!", preferredStyle: .Alert)
             print(status)
-            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: {action in
+                self.verifyLabel.text = ""
+            }))
             self.presentViewController(alert, animated: true, completion: nil)
         }else if(status == "2")
         {
             let alert = UIAlertController(title: "", message: "订单不存在!", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: {action in
+                self.verifyLabel.text = ""
+            }))
             self.presentViewController(alert, animated: true, completion: nil)
         }else if(status == "3")
         {
             let alert = UIAlertController(title: "", message: "未知错误，请重试!", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: {action in
+                self.verifyLabel.text = ""
+            }))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         data.setData(NSData())

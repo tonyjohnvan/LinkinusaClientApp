@@ -34,20 +34,15 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
         let password:NSString = txtPassword.text! as NSString
         
         if ( username.isEqualToString("") || password.isEqualToString("") ) {
-            
-            let alertView:UIAlertView = UIAlertView()
-            alertView.title = "登录失败!"
-            alertView.message = "用户名和密码不能为空！"
-            alertView.delegate = self
-            alertView.addButtonWithTitle("确认")
-            alertView.show()
+            let alert = UIAlertController(title: "登录失败!", message: "用户名和密码不能为空！", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         } else {
             // get user info from API
             startConnection()
             
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,6 +56,9 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
         view.addGestureRecognizer(tap)
         
         loadingIcon.startAnimating()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,6 +70,16 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
+    }
+    
+    func keyboardWillShow(sender: NSNotification) {
+        if (self.view.frame.origin.y > -180){
+            self.view.frame.origin.y -= 180
+        }
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y = 0
     }
     
     func startConnection(){
@@ -100,19 +108,13 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
             prefs.synchronize()
             self.performSegueWithIdentifier("login", sender: self)
         } else if (status == "1"){
-            let alertView:UIAlertView = UIAlertView()
-            alertView.title = "登录失败!"
-            alertView.message = "消费者不允许登录!"
-            alertView.delegate = self
-            alertView.addButtonWithTitle("确认")
-            alertView.show()
+            let alert = UIAlertController(title: "登录失败!", message: "消费者不允许登录!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         } else if(status == "2"){
-            let alertView:UIAlertView = UIAlertView()
-            alertView.title = "登录失败!"
-            alertView.message = "用户名或密码错误!"
-            alertView.delegate = self
-            alertView.addButtonWithTitle("确认")
-            alertView.show()
+            let alert = UIAlertController(title: "登录失败!", message: "用户名或密码错误!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         }
         data.setData(NSData())
     }

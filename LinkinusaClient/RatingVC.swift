@@ -25,6 +25,8 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
     @IBOutlet weak var mainTableView: UITableView!
 
     lazy var data = NSMutableData()
+    
+    var refreshControl:UIRefreshControl!
 
     @IBAction func actLogout(sender: UIButton) {
         let alert = UIAlertController(title: "登出", message: "您确定要登出系统？未保存的修改将丢失", preferredStyle: UIAlertControllerStyle.Alert)
@@ -68,9 +70,23 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
 
         mainTableView.allowsSelection = false;
         mainTableView.separatorStyle = .None
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.mainTableView.addSubview(refreshControl)
+        
         startConnection()
 
     }
+    
+    func refresh(sender:AnyObject)
+    {
+        // Code to refresh table view
+        rates = []
+        startConnection()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -212,7 +228,7 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
         let json: NSDictionary = ((try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary)
         let ratings: NSArray = json["rating"] as! NSArray
         let ratingStars: NSArray = json["ratingStars"] as! NSArray
-        
+        // generate ratingStars data
         if (ratingStars.count > 0){
             lblNumOfReviews.text = String(ratingStars.count) + " 人评价"
             var sum = 0, data:[Int] = [0, 0, 0, 0, 0]
@@ -239,6 +255,7 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
             lbl5sNum.text = String(data[4])
             lblAvgScore.text = String(Double(sum) / Double(ratingStars.count))
         }
+        // generate ratings data
         if (ratings.count > 0){
             for rating in ratings{
                 let commentId = rating["commentId"] as! NSString as String
@@ -255,7 +272,9 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
             alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
+        self.refreshControl.endRefreshing()
         data.setData(NSData())
         mainTableView.reloadData()
+        
     }
 }

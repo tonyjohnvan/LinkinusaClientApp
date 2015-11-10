@@ -19,6 +19,9 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
     
     @IBOutlet weak var topTabBG: UIImageView!
     
+    var refreshControlTotalOrders:UIRefreshControl!
+    var refreshControlOrderDetail:UIRefreshControl!
+    
     @IBAction func actLogout(sender: UIButton) {
         let alert = UIAlertController(title: "登出", message: "您确定要登出系统？未保存的修改将丢失", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: {action in
@@ -90,8 +93,28 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
         //hide orderdetail table
         orderDetailTV.hidden = true
         
+        // UIViewtable pull refresh
+        self.refreshControlTotalOrders = UIRefreshControl()
+        self.refreshControlTotalOrders.attributedTitle = NSAttributedString(string: "下拉刷新")
+        self.refreshControlTotalOrders.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.refreshControlOrderDetail = UIRefreshControl()
+        self.refreshControlOrderDetail.attributedTitle = NSAttributedString(string: "下拉刷新")
+        self.refreshControlOrderDetail.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.allOrderTV.addSubview(refreshControlTotalOrders)
+        self.orderDetailTV.addSubview(refreshControlOrderDetail)
+        
         startConnection()
         
+    }
+    
+    func refresh(sender:AnyObject)
+    {
+        // Code to refresh table view
+        allOrders = []
+        orderDetails = []
+        startConnection()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,6 +147,7 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
             cell.lblPrice.text = "$\(oneAllOrder.price)"
             cell.lblSold.text = "\(oneAllOrder.sold)"
             cell.lblRedeemed.text = "\(oneAllOrder.redeemed)"
+            cell.lblLeft.text = "\(oneAllOrder.sold - oneAllOrder.redeemed)"
             
             return cell
         } else {
@@ -212,6 +236,7 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
         let totalOrders: NSArray = json["totalOrder"] as! NSArray
         let orderDetail: NSArray = json["orderDetail"] as! NSArray
         if (totalOrders.count > 0 && orderDetail.count > 0){
+            // generate totalOrders data
             for order in totalOrders{
                 let orderName = order["orderName"] as! NSString as String
                 let originalPrice = order["originalPrice"] as! NSString as String
@@ -221,6 +246,7 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
                 let orderAll: OrderAll = OrderAll(orderName: orderName, oringinalPrice: originalPrice, price: price, sold: sold, redeemed: redeemed)
                 self.allOrders.append(orderAll)
             }
+            // generate orderDetail data
             for detail in orderDetail{
                 let orderNo = detail["orderNo"] as! NSString as String
                 let time = detail["time"] as! NSString as String
@@ -235,6 +261,8 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
             alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
+        self.refreshControlTotalOrders.endRefreshing()
+        self.refreshControlOrderDetail.endRefreshing()
         data.setData(NSData())
         allOrderTV.reloadData()
         orderDetailTV.reloadData()
