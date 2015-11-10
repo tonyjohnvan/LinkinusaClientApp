@@ -31,13 +31,13 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
         alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { action in
             let appDomain = NSBundle.mainBundle().bundleIdentifier
             NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
-            
+
             let alert = UIAlertController(title: "", message: "登出成功!", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: { action in
                 self.performSegueWithIdentifier("logout1", sender: self)
-            }))
+    }))
             self.presentViewController(alert, animated: true, completion: nil)
-            
+
         }))
         alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
@@ -108,12 +108,13 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
 
     @IBAction func btnVerifyTUI(sender: UIButton) {
         //order verification
-        let orderNum:NSString = verifyLabel.text! as NSString
+        let orderNum: NSString = verifyLabel.text! as NSString
         if (orderNum.isEqualToString("")){
             let alert = UIAlertController(title: "", message: "订单号不能为空！", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-        }else{
+        }else
+        {
             startConnection()
         }
     }
@@ -149,7 +150,7 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
 
     func startConnection(){
         let orderNum : String = verifyLabel.text!
-        let urlPath: String = "http://linkinusa-backend.herokuapp.com/api/scanOrder/\(orderNum)"
+        let urlPath: String = "http: //linkinusa-backend.herokuapp.com/api/scanOrder/\(orderNum)"
         let url: NSURL = NSURL(string: urlPath)!
         let request: NSURLRequest = NSURLRequest(URL: url)
         let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
@@ -168,7 +169,7 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
             let alert = UIAlertController(title: "", message: "订单验证成功!", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: {action in
                 self.verifyLabel.text = ""
-            }))
+    }))
             self.presentViewController(alert, animated: true, completion: nil)
         }else if(status == "1")
         {
@@ -176,21 +177,21 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
             print(status)
             alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: {action in
                 self.verifyLabel.text = ""
-            }))
+    }))
             self.presentViewController(alert, animated: true, completion: nil)
         }else if(status == "2")
         {
             let alert = UIAlertController(title: "", message: "订单不存在!", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: {action in
                 self.verifyLabel.text = ""
-            }))
+    }))
             self.presentViewController(alert, animated: true, completion: nil)
         }else if(status == "3")
         {
             let alert = UIAlertController(title: "", message: "未知错误，请重试!", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: {action in
                 self.verifyLabel.text = ""
-            }))
+    }))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         data.setData(NSData())

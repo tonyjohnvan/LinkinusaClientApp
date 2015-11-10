@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate {
-    
+
     @IBOutlet weak var lblAvgScore: UILabel!
     @IBOutlet weak var lbl5sNum: UILabel!
     @IBOutlet weak var lbl4sNum: UILabel!
@@ -19,25 +19,25 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
     @IBOutlet weak var lbl2sNum: UILabel!
     @IBOutlet weak var lbl1sNum: UILabel!
     @IBOutlet weak var lblNumOfReviews: UILabel!
-    
+
     @IBOutlet weak var topperView: UIView!
 
     @IBOutlet weak var mainTableView: UITableView!
 
     lazy var data = NSMutableData()
-    
-    var refreshControl:UIRefreshControl!
+
+    var refreshControl: UIRefreshControl!
 
     @IBAction func actLogout(sender: UIButton) {
         let alert = UIAlertController(title: "登出", message: "您确定要登出系统？未保存的修改将丢失", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { action in
             let appDomain = NSBundle.mainBundle().bundleIdentifier
             NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
-            
+
             let alert = UIAlertController(title: "", message: "登出成功!", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: { action in
                 self.performSegueWithIdentifier("logout2", sender: self)
-            }))
+    }))
             self.presentViewController(alert, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: nil))
@@ -53,7 +53,7 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
     }
 
     override func viewWillLayoutSubviews() {
-        
+
     }
 
     override func viewDidLoad() {
@@ -70,23 +70,23 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
 
         mainTableView.allowsSelection = false;
         mainTableView.separatorStyle = .None
-        
+
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
-        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl.addTarget(self, action: "refresh: ", forControlEvents: UIControlEvents.ValueChanged)
         self.mainTableView.addSubview(refreshControl)
-        
+
         startConnection()
 
     }
-    
-    func refresh(sender:AnyObject)
+
+    func refresh(sender: AnyObject)
     {
         // Code to refresh table view
         rates = []
         startConnection()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -120,11 +120,11 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
             case "5": cell.imageRate.image = UIImage(named: "5sr")
             default: cell.imageRate.image = UIImage(named: "1sr")
         }
-        cell.lblReply.text = oneRate.reply == "" ? "暂无回复内容" : oneRate.reply
+        cell.lblReply.text = oneRate.reply == "" ? "暂无回复内容": oneRate.reply
         cell.lblReplyDate.text = oneRate.replyDate == "" ? "" : oneRate.replyDate
 
         cell.btnReply.tag = indexPath.row
-        cell.btnReply.addTarget(self, action: "cellButtonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+        cell.btnReply.addTarget(self, action: "cellButtonClicked: ", forControlEvents: UIControlEvents.TouchUpInside)
 
         return cell
 //        return UITableViewCell()
@@ -142,7 +142,7 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
         //2. Add the text field. You can configure it however you need.
         alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
             textField.text = "感谢您的支持"
-        })
+    })
 
         //3. Grab the value from the text field, and print it when the user clicks OK.
         alert.addAction(UIAlertAction(title: "留言", style: .Default, handler: { (action) -> Void in
@@ -150,23 +150,23 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
 
         // Backend API Access
             print("Text field: \(textField.text)")
-            
-            let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/reply")
+
+            let url = NSURL(string: "http: //linkinusa-backend.herokuapp.com/api/reply")
             let request = NSMutableURLRequest(URL: url!)
             request.HTTPMethod = "POST"
-            
-            let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+
+            let prefs: NSUserDefaults = NSUserDefaults.standardUserDefaults()
             let merchantId : String = prefs.stringForKey("merchantId")!
-            
+
             let commentId: String = self.rates[buttonRow].commentId
-            
+
             let postString = "commentId=\(commentId)&reply=\(textField.text!)&merchantId=\(merchantId)"
             request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
-            
+
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
                 data, response, error in
                 let json = ((try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)) as? NSDictionary)
-                
+
                 if let parseJSON = json {
                     let status = parseJSON["status"] as? String
                     let alert = UIAlertController(title: "", message: status, preferredStyle: .Alert)
@@ -179,14 +179,14 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
                         self.rates[buttonRow].replyDate = formatter.stringFromDate(date)
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                             self.mainTableView.reloadData()
-                        })
-                        
+    })
+
                     }))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
             }
             task.resume()
-    }))
+        }))
 
         //4. add Cancel for nothing
 
@@ -210,9 +210,9 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
 
     // create url connection and send rest api request
     func startConnection(){
-        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let prefs: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let merchantId : String = prefs.stringForKey("merchantId")!
-        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/rating/\(merchantId)")
+        let url = NSURL(string: "http: //linkinusa-backend.herokuapp.com/api/rating/\(merchantId)")
 
         let request: NSURLRequest = NSURLRequest(URL: url!)
         let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
@@ -231,22 +231,22 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
         // generate ratingStars data
         if (ratingStars.count > 0){
             lblNumOfReviews.text = String(ratingStars.count) + " 人评价"
-            var sum = 0, data:[Int] = [0, 0, 0, 0, 0]
+            var sum = 0, data: [Int] = [0, 0, 0, 0, 0]
             for ratingStar in ratingStars{
                 let content = ratingStar["star"] as! Int
                 sum += ratingStar["star"] as! Int
                 switch content {
-                case 1: data[0] += 1
-                        break
-                case 2: data[1] += 1
-                        break
-                case 3: data[2] += 1
-                        break
-                case 4: data[3] += 1
-                        break
-                case 5: data[4] += 1
-                default: break
-                }
+                    case 1: data[0] += 1
+                    break
+                    case 2: data[1] += 1
+                    break
+                    case 3: data[2] += 1
+                    break
+                    case 4: data[3] += 1
+                    break
+                    case 5: data[4] += 1
+                    default: break
+    }
             }
             lbl1sNum.text = String(data[0])
             lbl2sNum.text = String(data[1])
@@ -266,8 +266,9 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
                 let reply = rating["reply"] as! NSString as String
                 let rate: Rate = Rate(commentId: commentId, username: username, content: content, star: "5", date: date, replyDate: replyDate, reply: reply)
                 self.rates.append(rate)
-            }
-        }else{
+    }
+        }else
+        {
             let alert = UIAlertController(title: "", message: "暂无评论!", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "确认", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
@@ -275,6 +276,6 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
         self.refreshControl.endRefreshing()
         data.setData(NSData())
         mainTableView.reloadData()
-        
+
     }
 }
