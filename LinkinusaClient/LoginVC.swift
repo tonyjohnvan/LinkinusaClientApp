@@ -58,8 +58,8 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
 
         loadingIcon.startAnimating()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow: "), name: UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide: "), name: UIKeyboardWillHideNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil);
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,7 +87,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
         LoadingIndicator.hidden = false
         let username: String = txtUsername.text!
         let password: String = txtPassword.text!
-        let urlPath: String = "http: //linkinusa-backend.herokuapp.com/api/merchantLogin/\(username)/\(password)"
+        let urlPath: String = "http://linkinusa-backend.herokuapp.com/api/merchantLogin/\(username)/\(password)"
         let url: NSURL = NSURL(string: urlPath)!
         let request: NSURLRequest = NSURLRequest(URL: url)
         let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
@@ -100,7 +100,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
 
     func connectionDidFinishLoading(connection: NSURLConnection) {
         LoadingIndicator.hidden = true
-        let jsonResult: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
+        let jsonResult: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as! NSDictionary
         let status : String = jsonResult.valueForKey("status") as! String
         if (status == "0"){
             let merchantId: String = jsonResult.valueForKey("merchantId") as! String

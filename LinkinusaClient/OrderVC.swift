@@ -96,11 +96,11 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
         // UIViewtable pull refresh
         self.refreshControlTotalOrders = UIRefreshControl()
         self.refreshControlTotalOrders.attributedTitle = NSAttributedString(string: "下拉刷新")
-        self.refreshControlTotalOrders.addTarget(self, action: "refresh: ", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControlTotalOrders.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
 
         self.refreshControlOrderDetail = UIRefreshControl()
         self.refreshControlOrderDetail.attributedTitle = NSAttributedString(string: "下拉刷新")
-        self.refreshControlOrderDetail.addTarget(self, action: "refresh: ", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControlOrderDetail.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
 
         self.allOrderTV.addSubview(refreshControlTotalOrders)
         self.orderDetailTV.addSubview(refreshControlOrderDetail)
@@ -193,7 +193,7 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
 
         let orderNum = orderDetails[buttonRow].orderNo
 
-        let url = NSURL(string: "http: //linkinusa-backend.herokuapp.com/api/submitOrder/\(orderNum)")
+        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/submitOrder/\(orderNum)")
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "GET"
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
@@ -220,7 +220,7 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
     func startConnection(){
         let prefs: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let merchantId : String = prefs.stringForKey("merchantId")!
-        let url = NSURL(string: "http: //linkinusa-backend.herokuapp.com/api/order/\(merchantId)")
+        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/order/\(merchantId)")
 
         let request: NSURLRequest = NSURLRequest(URL: url!)
         let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
@@ -234,7 +234,7 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
     func connectionDidFinishLoading(connection: NSURLConnection) {
         // convert json data to swift object
         print(data)
-        let json: NSDictionary = ((try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary)
+        let json: NSDictionary = ((try! NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)) as! NSDictionary)
         let totalOrders: NSArray = json["totalOrder"] as! NSArray
         let orderDetail: NSArray = json["orderDetail"] as! NSArray
         if (totalOrders.count > 0 && orderDetail.count > 0){
