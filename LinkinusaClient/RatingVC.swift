@@ -124,7 +124,7 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
         cell.lblReplyDate.text = oneRate.replyDate == "" ? "" : oneRate.replyDate
 
         cell.btnReply.tag = indexPath.row
-        cell.btnReply.addTarget(self, action: "cellButtonClicked: ", forControlEvents: UIControlEvents.TouchUpInside)
+        cell.btnReply.addTarget(self, action: "cellButtonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
 
         return cell
 //        return UITableViewCell()

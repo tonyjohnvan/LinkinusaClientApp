@@ -179,7 +179,7 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
             }
 
             cell.btnVerify.tag = indexPath.row
-            cell.btnVerify.addTarget(self, action: "verifyButtonClicked: ", forControlEvents: UIControlEvents.TouchUpInside)
+            cell.btnVerify.addTarget(self, action: "verifyButtonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
 
             return cell
         }
