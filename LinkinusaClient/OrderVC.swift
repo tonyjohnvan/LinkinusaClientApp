@@ -193,7 +193,7 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
 
         let orderNum = orderDetails[buttonRow].orderNo
 
-        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/submitOrder/\(orderNum)")
+        let url = NSURL(string: "http://linkinusa-server.herokuapp.com/api/submitOrder/\(orderNum)")
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "GET"
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
@@ -220,7 +220,7 @@ class OrderVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSU
     func startConnection(){
         let prefs: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let merchantId : String = prefs.stringForKey("merchantId")!
-        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/order/\(merchantId)")
+        let url = NSURL(string: "http://linkinusa-server.herokuapp.com/api/order/\(merchantId)")
 
         let request: NSURLRequest = NSURLRequest(URL: url!)
         let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!

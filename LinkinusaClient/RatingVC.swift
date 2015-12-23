@@ -151,7 +151,7 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
         // Backend API Access
             print("Text field: \(textField.text)")
 
-            let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/reply")
+            let url = NSURL(string: "http://linkinusa-server.herokuapp.com/api/reply")
             let request = NSMutableURLRequest(URL: url!)
             request.HTTPMethod = "POST"
 
@@ -212,7 +212,7 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
     func startConnection(){
         let prefs: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let merchantId : String = prefs.stringForKey("merchantId")!
-        let url = NSURL(string: "http://linkinusa-backend.herokuapp.com/api/rating/\(merchantId)")
+        let url = NSURL(string: "http://linkinusa-server.herokuapp.com/api/rating/\(merchantId)")
 
         let request: NSURLRequest = NSURLRequest(URL: url!)
         let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!

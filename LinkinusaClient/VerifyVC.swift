@@ -150,7 +150,7 @@ class VerifyVC : UIViewController, NSURLConnectionDelegate {
 
     func startConnection(){
         let orderNum : String = verifyLabel.text!
-        let urlPath: String = "http://linkinusa-backend.herokuapp.com/api/scanOrder/\(orderNum)"
+        let urlPath: String = "http://linkinusa-server.herokuapp.com/api/scanOrder/\(orderNum)"
         let url: NSURL = NSURL(string: urlPath)!
         let request: NSURLRequest = NSURLRequest(URL: url)
         let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!

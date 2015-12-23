@@ -87,7 +87,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
         LoadingIndicator.hidden = false
         let username: String = txtUsername.text!
         let password: String = txtPassword.text!
-        let urlPath: String = "http://linkinusa-backend.herokuapp.com/api/merchantLogin/\(username)/\(password)"
+        let urlPath: String = "http://linkinusa-server.herokuapp.com/api/merchantLogin/\(username)/\(password)"
         let url: NSURL = NSURL(string: urlPath)!
         let request: NSURLRequest = NSURLRequest(URL: url)
         let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!

@@ -48,7 +48,7 @@ class ResetPwdVC : UIViewController, NSURLConnectionDelegate {
     }
 
     func startConnection(){
-        let urlPath : NSString = "http://linkinusa-backend.herokuapp.com/api/resetPwd/\(email.text!)"
+        let urlPath : NSString = "http://linkinusa-server.herokuapp.com/api/resetPwd/\(email.text!)"
         let urlStr : NSString = urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         let url: NSURL = NSURL(string: urlStr as String)!
         let request: NSURLRequest = NSURLRequest(URL: url)
