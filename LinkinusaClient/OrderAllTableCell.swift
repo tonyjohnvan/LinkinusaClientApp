@@ -15,6 +15,7 @@ class OrderAllTableCell: UITableViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblSold: UILabel!
     @IBOutlet weak var lblRedeemed: UILabel!
+    @IBOutlet weak var lblLeft: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
