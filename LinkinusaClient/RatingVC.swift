@@ -253,7 +253,7 @@ class RatingVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NS
             lbl3sNum.text = String(data[2])
             lbl4sNum.text = String(data[3])
             lbl5sNum.text = String(data[4])
-            lblAvgScore.text = String(Double(sum) / Double(ratingStars.count))
+            lblAvgScore.text = String(format:"%.1f", Double(sum) / Double(ratingStars.count))
         }
         // generate ratings data
         if (ratings.count > 0){
